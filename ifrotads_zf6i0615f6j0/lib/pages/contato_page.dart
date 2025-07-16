@@ -13,13 +13,21 @@ class _ContatoPageState extends State<ContatoPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _mensagemController = TextEditingController();
 
+  @override
+  void dispose() {
+    _nomeController.dispose();
+    _emailController.dispose();
+    _mensagemController.dispose();
+    super.dispose();
+  }
+
   void _enviarFormulario() {
     if (_formKey.currentState!.validate()) {
       String nome = _nomeController.text;
       String email = _emailController.text;
       String mensagem = _mensagemController.text;
 
-      // Aqui você poderá integrar envio via Firebase, EmailJS ou API
+      // Aqui você pode integrar envio real via backend ou serviço externo
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Mensagem enviada com sucesso!\n'
@@ -76,10 +84,12 @@ class _ContatoPageState extends State<ContatoPage> {
                 children: [
                   TextFormField(
                     controller: _nomeController,
+                    autofocus: true,
                     style: const TextStyle(color: Colors.white),
                     decoration: const InputDecoration(
                       labelText: 'Nome',
                       labelStyle: TextStyle(color: Colors.white70),
+                      prefixIcon: Icon(Icons.person, color: Colors.green),
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.green),
                       ),
@@ -101,6 +111,7 @@ class _ContatoPageState extends State<ContatoPage> {
                     decoration: const InputDecoration(
                       labelText: 'Email',
                       labelStyle: TextStyle(color: Colors.white70),
+                      prefixIcon: Icon(Icons.email, color: Colors.green),
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.green),
                       ),

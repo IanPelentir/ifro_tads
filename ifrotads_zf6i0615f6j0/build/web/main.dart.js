@@ -42,6 +42,11 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
   const input_decorator = flutter_sdk.src__material__input_decorator;
   const input_border = flutter_sdk.src__material__input_border;
   const borders = flutter_sdk.src__painting__borders;
+  const icon = flutter_sdk.src__widgets__icon;
+  const icon_data = flutter_sdk.src__widgets__icon_data;
+  const scroll_view = flutter_sdk.src__widgets__scroll_view;
+  const divider = flutter_sdk.src__material__divider;
+  const list_tile = flutter_sdk.src__material__list_tile;
   var $46zapp_entry = Object.create(dart.library);
   var main = Object.create(dart.library);
   var web_plugin_registrant = Object.create(dart.library);
@@ -50,6 +55,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
   var grade_page = Object.create(dart.library);
   var noticias_page = Object.create(dart.library);
   var contato_page = Object.create(dart.library);
+  var documentos_page = Object.create(dart.library);
   var $toString = dartx.toString;
   var $first = dartx.first;
   var $keys = dartx.keys;
@@ -58,6 +64,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
   var $addAll = dartx.addAll;
   var $toList = dartx.toList;
   var $isEmpty = dartx.isEmpty;
+  var $length = dartx.length;
   dart._checkModuleNullSafetyMode(true);
   dart._checkModuleRuntimeTypes(false);
   var T = {
@@ -73,6 +80,8 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
     BuildContextToGradePage: () => (T.BuildContextToGradePage = dart.constFn(dart.fnType(grade_page.GradePage, [framework.BuildContext])))(),
     BuildContextToNoticiasPage: () => (T.BuildContextToNoticiasPage = dart.constFn(dart.fnType(noticias_page.NoticiasPage, [framework.BuildContext])))(),
     BuildContextToContatoPage: () => (T.BuildContextToContatoPage = dart.constFn(dart.fnType(contato_page.ContatoPage, [framework.BuildContext])))(),
+    MapOfString$String: () => (T.MapOfString$String = dart.constFn(core.Map$(core.String, core.String)))(),
+    BuildContextToDocumentosPage: () => (T.BuildContextToDocumentosPage = dart.constFn(dart.fnType(documentos_page.DocumentosPage, [framework.BuildContext])))(),
     BuildContextToWidget: () => (T.BuildContextToWidget = dart.constFn(dart.fnType(framework.Widget, [framework.BuildContext])))(),
     IdentityMapOfString$BuildContextToWidget: () => (T.IdentityMapOfString$BuildContextToWidget = dart.constFn(_js_helper.IdentityMap$(core.String, T.BuildContextToWidget())))(),
     JSArrayOfWidget: () => (T.JSArrayOfWidget = dart.constFn(_interceptors.JSArray$(framework.Widget)))(),
@@ -84,7 +93,9 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
     MapOfString$ListOfStringToPadding: () => (T.MapOfString$ListOfStringToPadding = dart.constFn(dart.fnType(basic.Padding, [T.MapOfString$ListOfString()])))(),
     GlobalKeyOfFormState: () => (T.GlobalKeyOfFormState = dart.constFn(framework.GlobalKey$(form.FormState)))(),
     StringN: () => (T.StringN = dart.constFn(dart.nullable(core.String)))(),
-    StringNToStringN: () => (T.StringNToStringN = dart.constFn(dart.fnType(T.StringN(), [T.StringN()])))()
+    StringNToStringN: () => (T.StringNToStringN = dart.constFn(dart.fnType(T.StringN(), [T.StringN()])))(),
+    BuildContextAndintToDivider: () => (T.BuildContextAndintToDivider = dart.constFn(dart.fnType(divider.Divider, [framework.BuildContext, core.int])))(),
+    BuildContextAndintToListTile: () => (T.BuildContextAndintToListTile = dart.constFn(dart.fnType(list_tile.ListTile, [framework.BuildContext, core.int])))()
   };
   const CT = Object.create({
     _: () => (C, CT)
@@ -123,56 +134,81 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [Widget_key]: null
       });
     },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: main.MyApp.prototype,
-        [Widget_key]: null
-      });
-    },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: homepage.HeroSection.prototype,
-        [Widget_key]: null
-      });
-    },
     get C8() {
-      return C[8] = dart.const({
-        __proto__: homepage.AboutSection.prototype,
-        [Widget_key]: null
-      });
+      return C[8] = dart.constMap(core.String, core.String, ["titulo", "Projeto Pedagógico do Curso", "descricao", "Descrição do projeto pedagógico do curso de TADS"]);
     },
     get C9() {
-      return C[9] = dart.const({
-        __proto__: homepage.GradeSection.prototype,
-        [Widget_key]: null
-      });
+      return C[9] = dart.constMap(core.String, core.String, ["titulo", "Regulamento Acadêmico", "descricao", "Regras e normas acadêmicas para os alunos"]);
     },
     get C10() {
-      return C[10] = dart.const({
-        __proto__: homepage.DocentesSection.prototype,
-        [Widget_key]: null
-      });
+      return C[10] = dart.constMap(core.String, core.String, ["titulo", "Ementas das Disciplinas", "descricao", "Resumo dos conteúdos das disciplinas do curso"]);
     },
     get C11() {
-      return C[11] = dart.const({
-        __proto__: homepage.NoticiasSection.prototype,
-        [Widget_key]: null
-      });
+      return C[11] = dart.constMap(core.String, core.String, ["titulo", "Calendário Letivo", "descricao", "Datas importantes e feriados acadêmicos"]);
     },
     get C12() {
-      return C[12] = dart.const({
-        __proto__: homepage.ContatoSection.prototype,
-        [Widget_key]: null
+      return C[12] = dart.constMap(core.String, core.String, ["titulo", "Formulários e Modelos", "descricao", "Formulários para matrícula, estágio e outros"]);
+    },
+    get C7() {
+      return C[7] = dart.constList([C[8] || CT.C8, C[9] || CT.C9, C[10] || CT.C10, C[11] || CT.C11, C[12] || CT.C12], T.MapOfString$String());
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: documentos_page.DocumentosPage.prototype,
+        [Widget_key]: null,
+        [DocumentosPage_documentos]: C[7] || CT.C7
       });
     },
     get C13() {
       return C[13] = dart.const({
-        __proto__: homepage.Footer.prototype,
+        __proto__: main.MyApp.prototype,
         [Widget_key]: null
       });
     },
     get C14() {
       return C[14] = dart.const({
+        __proto__: homepage.HeroSection.prototype,
+        [Widget_key]: null
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: homepage.AboutSection.prototype,
+        [Widget_key]: null
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: homepage.GradeSection.prototype,
+        [Widget_key]: null
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: homepage.DocentesSection.prototype,
+        [Widget_key]: null
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: homepage.NoticiasSection.prototype,
+        [Widget_key]: null
+      });
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: homepage.ContatoSection.prototype,
+        [Widget_key]: null
+      });
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: homepage.Footer.prototype,
+        [Widget_key]: null
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
         __proto__: edge_insets.EdgeInsets.prototype,
         [EdgeInsets_bottom]: 16,
         [EdgeInsets_right]: 32,
@@ -180,21 +216,21 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [EdgeInsets_left]: 32
       });
     },
-    get C17() {
-      return C[17] = dart.const({
+    get C24() {
+      return C[24] = dart.const({
         __proto__: ui.FontWeight.prototype,
         [FontWeight_value]: 700,
         [FontWeight_index]: 6
       });
     },
-    get C18() {
-      return C[18] = dart.const({
+    get C25() {
+      return C[25] = dart.const({
         __proto__: ui.Color.prototype,
         [Color_value]: 4294967295
       });
     },
-    get C16() {
-      return C[16] = dart.const({
+    get C23() {
+      return C[23] = dart.const({
         __proto__: text_style.TextStyle.prototype,
         [TextStyle_overflow]: null,
         [TextStyle_fontVariations]: null,
@@ -214,18 +250,18 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [TextStyle_wordSpacing]: null,
         [TextStyle_letterSpacing]: null,
         [TextStyle_fontStyle]: null,
-        [TextStyle_fontWeight]: C[17] || CT.C17,
+        [TextStyle_fontWeight]: C[24] || CT.C24,
         [TextStyle_fontSize]: 20,
         [TextStyle__package]: null,
         [TextStyle__fontFamilyFallback]: null,
         [TextStyle_fontFamily]: null,
         [TextStyle_backgroundColor]: null,
-        [TextStyle_color]: C[18] || CT.C18,
+        [TextStyle_color]: C[25] || CT.C25,
         [TextStyle_inherit]: true
       });
     },
-    get C15() {
-      return C[15] = dart.const({
+    get C22() {
+      return C[22] = dart.const({
         __proto__: text.Text.prototype,
         [Widget_key]: null,
         [Text_selectionColor]: null,
@@ -240,29 +276,21 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [Text_textDirection]: null,
         [Text_textAlign]: null,
         [Text_strutStyle]: null,
-        [Text_style]: C[16] || CT.C16,
+        [Text_style]: C[23] || CT.C23,
         [Text_textSpan]: null,
         [Text_data]: "IFRO TADS"
       });
     },
-    get C19() {
-      return C[19] = dart.const({
+    get C26() {
+      return C[26] = dart.const({
         __proto__: homepage.NavButton.prototype,
         [Widget_key]: null,
         [NavButton_onPressed]: null,
         [NavButton_text]: "Início"
       });
     },
-    get C20() {
-      return C[20] = dart.const({
-        __proto__: homepage.NavButton.prototype,
-        [Widget_key]: null,
-        [NavButton_onPressed]: null,
-        [NavButton_text]: "Docentes"
-      });
-    },
-    get C21() {
-      return C[21] = dart.const({
+    get C27() {
+      return C[27] = dart.const({
         __proto__: text_style.TextStyle.prototype,
         [TextStyle_overflow]: null,
         [TextStyle_fontVariations]: null,
@@ -288,12 +316,12 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [TextStyle__fontFamilyFallback]: null,
         [TextStyle_fontFamily]: null,
         [TextStyle_backgroundColor]: null,
-        [TextStyle_color]: C[18] || CT.C18,
+        [TextStyle_color]: C[25] || CT.C25,
         [TextStyle_inherit]: true
       });
     },
-    get C22() {
-      return C[22] = dart.const({
+    get C28() {
+      return C[28] = dart.const({
         __proto__: edge_insets.EdgeInsets.prototype,
         [EdgeInsets_bottom]: 0,
         [EdgeInsets_right]: 32,
@@ -301,15 +329,15 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [EdgeInsets_left]: 32
       });
     },
-    get C24() {
-      return C[24] = dart.const({
+    get C30() {
+      return C[30] = dart.const({
         __proto__: ui.TextAlign.prototype,
         [_Enum__name]: "center",
         [_Enum_index]: 2
       });
     },
-    get C25() {
-      return C[25] = dart.const({
+    get C31() {
+      return C[31] = dart.const({
         __proto__: text_style.TextStyle.prototype,
         [TextStyle_overflow]: null,
         [TextStyle_fontVariations]: null,
@@ -329,18 +357,18 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [TextStyle_wordSpacing]: null,
         [TextStyle_letterSpacing]: null,
         [TextStyle_fontStyle]: null,
-        [TextStyle_fontWeight]: C[17] || CT.C17,
+        [TextStyle_fontWeight]: C[24] || CT.C24,
         [TextStyle_fontSize]: 36,
         [TextStyle__package]: null,
         [TextStyle__fontFamilyFallback]: null,
         [TextStyle_fontFamily]: null,
         [TextStyle_backgroundColor]: null,
-        [TextStyle_color]: C[18] || CT.C18,
+        [TextStyle_color]: C[25] || CT.C25,
         [TextStyle_inherit]: true
       });
     },
-    get C23() {
-      return C[23] = dart.const({
+    get C29() {
+      return C[29] = dart.const({
         __proto__: text.Text.prototype,
         [Widget_key]: null,
         [Text_selectionColor]: null,
@@ -353,15 +381,15 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [Text_softWrap]: null,
         [Text_locale]: null,
         [Text_textDirection]: null,
-        [Text_textAlign]: C[24] || CT.C24,
+        [Text_textAlign]: C[30] || CT.C30,
         [Text_strutStyle]: null,
-        [Text_style]: C[25] || CT.C25,
+        [Text_style]: C[31] || CT.C31,
         [Text_textSpan]: null,
         [Text_data]: "Tecnologia em Análise e\nDesenvolvimento de Sistemas"
       });
     },
-    get C26() {
-      return C[26] = dart.const({
+    get C32() {
+      return C[32] = dart.const({
         __proto__: basic.SizedBox.prototype,
         [Widget_key]: null,
         [SingleChildRenderObjectWidget_child]: null,
@@ -369,8 +397,8 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [SizedBox_width]: null
       });
     },
-    get C27() {
-      return C[27] = dart.const({
+    get C33() {
+      return C[33] = dart.const({
         __proto__: edge_insets.EdgeInsets.prototype,
         [EdgeInsets_bottom]: 20,
         [EdgeInsets_right]: 32,
@@ -378,8 +406,8 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [EdgeInsets_left]: 32
       });
     },
-    get C29() {
-      return C[29] = dart.const({
+    get C35() {
+      return C[35] = dart.const({
         __proto__: text_style.TextStyle.prototype,
         [TextStyle_overflow]: null,
         [TextStyle_fontVariations]: null,
@@ -409,8 +437,8 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [TextStyle_inherit]: true
       });
     },
-    get C28() {
-      return C[28] = dart.const({
+    get C34() {
+      return C[34] = dart.const({
         __proto__: text.Text.prototype,
         [Widget_key]: null,
         [Text_selectionColor]: null,
@@ -425,13 +453,13 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [Text_textDirection]: null,
         [Text_textAlign]: null,
         [Text_strutStyle]: null,
-        [Text_style]: C[29] || CT.C29,
+        [Text_style]: C[35] || CT.C35,
         [Text_textSpan]: null,
         [Text_data]: "Saiba Mais"
       });
     },
-    get C30() {
-      return C[30] = dart.const({
+    get C36() {
+      return C[36] = dart.const({
         __proto__: edge_insets.EdgeInsets.prototype,
         [EdgeInsets_bottom]: 64,
         [EdgeInsets_right]: 32,
@@ -439,8 +467,8 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [EdgeInsets_left]: 32
       });
     },
-    get C31() {
-      return C[31] = dart.const({
+    get C37() {
+      return C[37] = dart.const({
         __proto__: edge_insets.EdgeInsets.prototype,
         [EdgeInsets_bottom]: 32,
         [EdgeInsets_right]: 32,
@@ -448,14 +476,14 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [EdgeInsets_left]: 32
       });
     },
-    get C34() {
-      return C[34] = dart.const({
+    get C40() {
+      return C[40] = dart.const({
         __proto__: ui.Color.prototype,
         [Color_value]: 3019898879
       });
     },
-    get C33() {
-      return C[33] = dart.const({
+    get C39() {
+      return C[39] = dart.const({
         __proto__: text_style.TextStyle.prototype,
         [TextStyle_overflow]: null,
         [TextStyle_fontVariations]: null,
@@ -481,12 +509,12 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [TextStyle__fontFamilyFallback]: null,
         [TextStyle_fontFamily]: null,
         [TextStyle_backgroundColor]: null,
-        [TextStyle_color]: C[34] || CT.C34,
+        [TextStyle_color]: C[40] || CT.C40,
         [TextStyle_inherit]: true
       });
     },
-    get C32() {
-      return C[32] = dart.const({
+    get C38() {
+      return C[38] = dart.const({
         __proto__: text.Text.prototype,
         [Widget_key]: null,
         [Text_selectionColor]: null,
@@ -499,19 +527,19 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [Text_softWrap]: null,
         [Text_locale]: null,
         [Text_textDirection]: null,
-        [Text_textAlign]: C[24] || CT.C24,
+        [Text_textAlign]: C[30] || CT.C30,
         [Text_strutStyle]: null,
-        [Text_style]: C[33] || CT.C33,
+        [Text_style]: C[39] || CT.C39,
         [Text_textSpan]: null,
         [Text_data]: "© 2025 IFRO - Tecnologia em Análise e Desenvolvimento de Sistemas"
       });
     },
-    get C35() {
-      return C[35] = dart.const({
+    get C41() {
+      return C[41] = dart.const({
         __proto__: icon_theme_data.IconThemeData.prototype,
         [IconThemeData_shadows]: null,
         [IconThemeData__opacity]: null,
-        [IconThemeData_color]: C[18] || CT.C18,
+        [IconThemeData_color]: C[25] || CT.C25,
         [IconThemeData_opticalSize]: null,
         [IconThemeData_grade]: null,
         [IconThemeData_weight]: null,
@@ -519,8 +547,8 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [IconThemeData_size]: null
       });
     },
-    get C37() {
-      return C[37] = dart.const({
+    get C43() {
+      return C[43] = dart.const({
         __proto__: text_style.TextStyle.prototype,
         [TextStyle_overflow]: null,
         [TextStyle_fontVariations]: null,
@@ -540,18 +568,18 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [TextStyle_wordSpacing]: null,
         [TextStyle_letterSpacing]: null,
         [TextStyle_fontStyle]: null,
-        [TextStyle_fontWeight]: C[17] || CT.C17,
+        [TextStyle_fontWeight]: C[24] || CT.C24,
         [TextStyle_fontSize]: null,
         [TextStyle__package]: null,
         [TextStyle__fontFamilyFallback]: null,
         [TextStyle_fontFamily]: null,
         [TextStyle_backgroundColor]: null,
-        [TextStyle_color]: C[18] || CT.C18,
+        [TextStyle_color]: C[25] || CT.C25,
         [TextStyle_inherit]: true
       });
     },
-    get C36() {
-      return C[36] = dart.const({
+    get C42() {
+      return C[42] = dart.const({
         __proto__: text.Text.prototype,
         [Widget_key]: null,
         [Text_selectionColor]: null,
@@ -566,13 +594,13 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [Text_textDirection]: null,
         [Text_textAlign]: null,
         [Text_strutStyle]: null,
-        [Text_style]: C[37] || CT.C37,
+        [Text_style]: C[43] || CT.C43,
         [Text_textSpan]: null,
         [Text_data]: "Sobre o Curso"
       });
     },
-    get C38() {
-      return C[38] = dart.const({
+    get C44() {
+      return C[44] = dart.const({
         __proto__: edge_insets.EdgeInsets.prototype,
         [EdgeInsets_bottom]: 32,
         [EdgeInsets_right]: 24,
@@ -580,22 +608,22 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [EdgeInsets_left]: 24
       });
     },
-    get C40() {
-      return C[40] = dart.const({
+    get C46() {
+      return C[46] = dart.const({
         __proto__: sobrepage.SectionTitle.prototype,
         [Widget_key]: null,
         [SectionTitle_title]: "Histórico"
       });
     },
-    get C41() {
-      return C[41] = dart.const({
+    get C47() {
+      return C[47] = dart.const({
         __proto__: sobrepage.SectionText.prototype,
         [Widget_key]: null,
         [SectionText_text]: "O curso de Tecnologia em Análise e Desenvolvimento de Sistemas do IFRO iniciou suas atividades em Ariquemes para suprir a necessidade de profissionais qualificados na área de tecnologia na região, sendo referência no estado na formação de desenvolvedores e analistas."
       });
     },
-    get C42() {
-      return C[42] = dart.const({
+    get C48() {
+      return C[48] = dart.const({
         __proto__: basic.SizedBox.prototype,
         [Widget_key]: null,
         [SingleChildRenderObjectWidget_child]: null,
@@ -603,154 +631,154 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [SizedBox_width]: null
       });
     },
-    get C43() {
-      return C[43] = dart.const({
-        __proto__: sobrepage.SectionTitle.prototype,
-        [Widget_key]: null,
-        [SectionTitle_title]: "Missão"
-      });
-    },
-    get C44() {
-      return C[44] = dart.const({
-        __proto__: sobrepage.SectionText.prototype,
-        [Widget_key]: null,
-        [SectionText_text]: "Formar profissionais capazes de analisar, projetar, documentar, especificar, testar, implantar e manter sistemas computacionais de informação, atuando de maneira ética e responsável no desenvolvimento de soluções tecnológicas para a sociedade."
-      });
-    },
-    get C45() {
-      return C[45] = dart.const({
-        __proto__: sobrepage.SectionTitle.prototype,
-        [Widget_key]: null,
-        [SectionTitle_title]: "Visão"
-      });
-    },
-    get C46() {
-      return C[46] = dart.const({
-        __proto__: sobrepage.SectionText.prototype,
-        [Widget_key]: null,
-        [SectionText_text]: "Ser reconhecido como um curso de excelência na formação de profissionais em tecnologia, contribuindo para o desenvolvimento socioeconômico e tecnológico da região e do país."
-      });
-    },
-    get C47() {
-      return C[47] = dart.const({
-        __proto__: sobrepage.SectionTitle.prototype,
-        [Widget_key]: null,
-        [SectionTitle_title]: "Objetivos"
-      });
-    },
-    get C48() {
-      return C[48] = dart.const({
-        __proto__: sobrepage.SectionText.prototype,
-        [Widget_key]: null,
-        [SectionText_text]: "• Desenvolver competências técnicas em programação e análise de sistemas.\n• Preparar profissionais para o mercado de trabalho e para o empreendedorismo tecnológico.\n• Incentivar a pesquisa e a inovação em tecnologia.\n• Promover uma formação crítica e ética."
-      });
-    },
     get C49() {
       return C[49] = dart.const({
         __proto__: sobrepage.SectionTitle.prototype,
         [Widget_key]: null,
-        [SectionTitle_title]: "Diferenciais do Curso"
+        [SectionTitle_title]: "Missão"
       });
     },
     get C50() {
       return C[50] = dart.const({
         __proto__: sobrepage.SectionText.prototype,
         [Widget_key]: null,
-        [SectionText_text]: "• Corpo docente qualificado com mestres e doutores.\n• Infraestrutura moderna com laboratórios de informática atualizados.\n• Parcerias com empresas e órgãos públicos para estágios e projetos.\n• Incentivo à participação em eventos, maratonas de programação e feiras tecnológicas."
+        [SectionText_text]: "Formar profissionais capazes de analisar, projetar, documentar, especificar, testar, implantar e manter sistemas computacionais de informação, atuando de maneira ética e responsável no desenvolvimento de soluções tecnológicas para a sociedade."
+      });
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: sobrepage.SectionTitle.prototype,
+        [Widget_key]: null,
+        [SectionTitle_title]: "Visão"
       });
     },
     get C52() {
       return C[52] = dart.const({
+        __proto__: sobrepage.SectionText.prototype,
+        [Widget_key]: null,
+        [SectionText_text]: "Ser reconhecido como um curso de excelência na formação de profissionais em tecnologia, contribuindo para o desenvolvimento socioeconômico e tecnológico da região e do país."
+      });
+    },
+    get C53() {
+      return C[53] = dart.const({
+        __proto__: sobrepage.SectionTitle.prototype,
+        [Widget_key]: null,
+        [SectionTitle_title]: "Objetivos"
+      });
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: sobrepage.SectionText.prototype,
+        [Widget_key]: null,
+        [SectionText_text]: "• Desenvolver competências técnicas em programação e análise de sistemas.\n• Preparar profissionais para o mercado de trabalho e para o empreendedorismo tecnológico.\n• Incentivar a pesquisa e a inovação em tecnologia.\n• Promover uma formação crítica e ética."
+      });
+    },
+    get C55() {
+      return C[55] = dart.const({
+        __proto__: sobrepage.SectionTitle.prototype,
+        [Widget_key]: null,
+        [SectionTitle_title]: "Diferenciais do Curso"
+      });
+    },
+    get C56() {
+      return C[56] = dart.const({
+        __proto__: sobrepage.SectionText.prototype,
+        [Widget_key]: null,
+        [SectionText_text]: "• Corpo docente qualificado com mestres e doutores.\n• Infraestrutura moderna com laboratórios de informática atualizados.\n• Parcerias com empresas e órgãos públicos para estágios e projetos.\n• Incentivo à participação em eventos, maratonas de programação e feiras tecnológicas."
+      });
+    },
+    get C58() {
+      return C[58] = dart.const({
         __proto__: alignment.Alignment.prototype,
         [Alignment_y]: 0,
         [Alignment_x]: 0
       });
     },
-    get C51() {
-      return C[51] = dart.const({
-        __proto__: basic.Center.prototype,
-        [Widget_key]: null,
-        [SingleChildRenderObjectWidget_child]: C[32] || CT.C32,
-        [Align_heightFactor]: null,
-        [Align_widthFactor]: null,
-        [Align_alignment]: C[52] || CT.C52
-      });
-    },
-    get C39() {
-      return C[39] = dart.constList([C[40] || CT.C40, C[41] || CT.C41, C[42] || CT.C42, C[43] || CT.C43, C[44] || CT.C44, C[42] || CT.C42, C[45] || CT.C45, C[46] || CT.C46, C[42] || CT.C42, C[47] || CT.C47, C[48] || CT.C48, C[42] || CT.C42, C[49] || CT.C49, C[50] || CT.C50, C[42] || CT.C42, C[51] || CT.C51], framework.Widget);
-    },
-    get C56() {
-      return C[56] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4293457385
-      });
-    },
     get C57() {
       return C[57] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4291356361
+        __proto__: basic.Center.prototype,
+        [Widget_key]: null,
+        [SingleChildRenderObjectWidget_child]: C[38] || CT.C38,
+        [Align_heightFactor]: null,
+        [Align_widthFactor]: null,
+        [Align_alignment]: C[58] || CT.C58
       });
     },
-    get C58() {
-      return C[58] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4289058471
-      });
-    },
-    get C59() {
-      return C[59] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4286695300
-      });
-    },
-    get C60() {
-      return C[60] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4284922730
-      });
-    },
-    get C61() {
-      return C[61] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4283215696
-      });
+    get C45() {
+      return C[45] = dart.constList([C[46] || CT.C46, C[47] || CT.C47, C[48] || CT.C48, C[49] || CT.C49, C[50] || CT.C50, C[48] || CT.C48, C[51] || CT.C51, C[52] || CT.C52, C[48] || CT.C48, C[53] || CT.C53, C[54] || CT.C54, C[48] || CT.C48, C[55] || CT.C55, C[56] || CT.C56, C[48] || CT.C48, C[57] || CT.C57], framework.Widget);
     },
     get C62() {
       return C[62] = dart.const({
         __proto__: ui.Color.prototype,
-        [Color_value]: 4282622023
+        [Color_value]: 4293457385
       });
     },
     get C63() {
       return C[63] = dart.const({
         __proto__: ui.Color.prototype,
-        [Color_value]: 4281896508
+        [Color_value]: 4291356361
       });
     },
     get C64() {
       return C[64] = dart.const({
         __proto__: ui.Color.prototype,
-        [Color_value]: 4281236786
+        [Color_value]: 4289058471
       });
     },
     get C65() {
       return C[65] = dart.const({
         __proto__: ui.Color.prototype,
+        [Color_value]: 4286695300
+      });
+    },
+    get C66() {
+      return C[66] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4284922730
+      });
+    },
+    get C67() {
+      return C[67] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4283215696
+      });
+    },
+    get C68() {
+      return C[68] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4282622023
+      });
+    },
+    get C69() {
+      return C[69] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4281896508
+      });
+    },
+    get C70() {
+      return C[70] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4281236786
+      });
+    },
+    get C71() {
+      return C[71] = dart.const({
+        __proto__: ui.Color.prototype,
         [Color_value]: 4279983648
       });
     },
-    get C55() {
-      return C[55] = dart.constMap(core.int, ui.Color, [50, C[56] || CT.C56, 100, C[57] || CT.C57, 200, C[58] || CT.C58, 300, C[59] || CT.C59, 400, C[60] || CT.C60, 500, C[61] || CT.C61, 600, C[62] || CT.C62, 700, C[63] || CT.C63, 800, C[64] || CT.C64, 900, C[65] || CT.C65]);
+    get C61() {
+      return C[61] = dart.constMap(core.int, ui.Color, [50, C[62] || CT.C62, 100, C[63] || CT.C63, 200, C[64] || CT.C64, 300, C[65] || CT.C65, 400, C[66] || CT.C66, 500, C[67] || CT.C67, 600, C[68] || CT.C68, 700, C[69] || CT.C69, 800, C[70] || CT.C70, 900, C[71] || CT.C71]);
     },
-    get C54() {
-      return C[54] = dart.const({
+    get C60() {
+      return C[60] = dart.const({
         __proto__: colors.MaterialColor.prototype,
         [Color_value]: 4283215696,
-        [ColorSwatch__swatch]: C[55] || CT.C55
+        [ColorSwatch__swatch]: C[61] || CT.C61
       });
     },
-    get C53() {
-      return C[53] = dart.const({
+    get C59() {
+      return C[59] = dart.const({
         __proto__: text_style.TextStyle.prototype,
         [TextStyle_overflow]: null,
         [TextStyle_fontVariations]: null,
@@ -770,18 +798,18 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [TextStyle_wordSpacing]: null,
         [TextStyle_letterSpacing]: null,
         [TextStyle_fontStyle]: null,
-        [TextStyle_fontWeight]: C[17] || CT.C17,
+        [TextStyle_fontWeight]: C[24] || CT.C24,
         [TextStyle_fontSize]: 24,
         [TextStyle__package]: null,
         [TextStyle__fontFamilyFallback]: null,
         [TextStyle_fontFamily]: null,
         [TextStyle_backgroundColor]: null,
-        [TextStyle_color]: C[54] || CT.C54,
+        [TextStyle_color]: C[60] || CT.C60,
         [TextStyle_inherit]: true
       });
     },
-    get C66() {
-      return C[66] = dart.const({
+    get C72() {
+      return C[72] = dart.const({
         __proto__: text_style.TextStyle.prototype,
         [TextStyle_overflow]: null,
         [TextStyle_fontVariations]: null,
@@ -807,12 +835,12 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [TextStyle__fontFamilyFallback]: null,
         [TextStyle_fontFamily]: null,
         [TextStyle_backgroundColor]: null,
-        [TextStyle_color]: C[34] || CT.C34,
+        [TextStyle_color]: C[40] || CT.C40,
         [TextStyle_inherit]: true
       });
     },
-    get C67() {
-      return C[67] = dart.const({
+    get C73() {
+      return C[73] = dart.const({
         __proto__: text.Text.prototype,
         [Widget_key]: null,
         [Text_selectionColor]: null,
@@ -827,34 +855,34 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [Text_textDirection]: null,
         [Text_textAlign]: null,
         [Text_strutStyle]: null,
-        [Text_style]: C[37] || CT.C37,
+        [Text_style]: C[43] || CT.C43,
         [Text_textSpan]: null,
         [Text_data]: "Grade Curricular"
       });
     },
-    get C69() {
-      return C[69] = dart.const({
+    get C75() {
+      return C[75] = dart.const({
         __proto__: grade_page.SectionTitle.prototype,
         [Widget_key]: null,
         [SectionTitle_title$]: "Apresentação"
       });
     },
-    get C70() {
-      return C[70] = dart.const({
+    get C76() {
+      return C[76] = dart.const({
         __proto__: grade_page.SectionText.prototype,
         [Widget_key]: null,
         [SectionText_text$]: "A grade curricular do curso de Tecnologia em Análise e Desenvolvimento de Sistemas foi estruturada para oferecer uma formação sólida, combinando teoria e prática para preparar os estudantes para os desafios do mercado de trabalho e para o desenvolvimento de soluções inovadoras."
       });
     },
-    get C71() {
-      return C[71] = dart.const({
+    get C77() {
+      return C[77] = dart.const({
         __proto__: grade_page.SectionTitle.prototype,
         [Widget_key]: null,
         [SectionTitle_title$]: "Disciplinas por Semestre"
       });
     },
-    get C72() {
-      return C[72] = dart.const({
+    get C78() {
+      return C[78] = dart.const({
         __proto__: basic.SizedBox.prototype,
         [Widget_key]: null,
         [SingleChildRenderObjectWidget_child]: null,
@@ -862,45 +890,45 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [SizedBox_width]: null
       });
     },
-    get C73() {
-      return C[73] = dart.const({
+    get C79() {
+      return C[79] = dart.const({
         __proto__: grade_page.SemesterList.prototype,
         [Widget_key]: null
       });
     },
-    get C74() {
-      return C[74] = dart.const({
+    get C80() {
+      return C[80] = dart.const({
         __proto__: grade_page.SectionTitle.prototype,
         [Widget_key]: null,
         [SectionTitle_title$]: "Atividades Complementares"
       });
     },
-    get C75() {
-      return C[75] = dart.const({
+    get C81() {
+      return C[81] = dart.const({
         __proto__: grade_page.SectionText.prototype,
         [Widget_key]: null,
         [SectionText_text$]: "Além das disciplinas obrigatórias, o curso oferece atividades complementares, como participação em eventos, workshops, projetos de extensão e pesquisa, visando ampliar a formação e as oportunidades de aprendizado prático dos alunos."
       });
     },
-    get C76() {
-      return C[76] = dart.const({
+    get C82() {
+      return C[82] = dart.const({
         __proto__: grade_page.SectionTitle.prototype,
         [Widget_key]: null,
         [SectionTitle_title$]: "Carga Horária"
       });
     },
-    get C77() {
-      return C[77] = dart.const({
+    get C83() {
+      return C[83] = dart.const({
         __proto__: grade_page.SectionText.prototype,
         [Widget_key]: null,
         [SectionText_text$]: "O curso possui carga horária total de 2.400 horas, distribuídas ao longo de 3 anos, com aulas teóricas, práticas em laboratório, estágios supervisionados e atividades complementares."
       });
     },
-    get C68() {
-      return C[68] = dart.constList([C[69] || CT.C69, C[70] || CT.C70, C[42] || CT.C42, C[71] || CT.C71, C[72] || CT.C72, C[73] || CT.C73, C[42] || CT.C42, C[74] || CT.C74, C[75] || CT.C75, C[42] || CT.C42, C[76] || CT.C76, C[77] || CT.C77, C[42] || CT.C42, C[51] || CT.C51], framework.Widget);
+    get C74() {
+      return C[74] = dart.constList([C[75] || CT.C75, C[76] || CT.C76, C[48] || CT.C48, C[77] || CT.C77, C[78] || CT.C78, C[79] || CT.C79, C[48] || CT.C48, C[80] || CT.C80, C[81] || CT.C81, C[48] || CT.C48, C[82] || CT.C82, C[83] || CT.C83, C[48] || CT.C48, C[57] || CT.C57], framework.Widget);
     },
-    get C78() {
-      return C[78] = dart.const({
+    get C84() {
+      return C[84] = dart.const({
         __proto__: edge_insets.EdgeInsets.prototype,
         [EdgeInsets_bottom]: 24,
         [EdgeInsets_right]: 0,
@@ -908,8 +936,8 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [EdgeInsets_left]: 0
       });
     },
-    get C79() {
-      return C[79] = dart.const({
+    get C85() {
+      return C[85] = dart.const({
         __proto__: text_style.TextStyle.prototype,
         [TextStyle_overflow]: null,
         [TextStyle_fontVariations]: null,
@@ -929,18 +957,18 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [TextStyle_wordSpacing]: null,
         [TextStyle_letterSpacing]: null,
         [TextStyle_fontStyle]: null,
-        [TextStyle_fontWeight]: C[17] || CT.C17,
+        [TextStyle_fontWeight]: C[24] || CT.C24,
         [TextStyle_fontSize]: 20,
         [TextStyle__package]: null,
         [TextStyle__fontFamilyFallback]: null,
         [TextStyle_fontFamily]: null,
         [TextStyle_backgroundColor]: null,
-        [TextStyle_color]: C[54] || CT.C54,
+        [TextStyle_color]: C[60] || CT.C60,
         [TextStyle_inherit]: true
       });
     },
-    get C80() {
-      return C[80] = dart.const({
+    get C86() {
+      return C[86] = dart.const({
         __proto__: basic.SizedBox.prototype,
         [Widget_key]: null,
         [SingleChildRenderObjectWidget_child]: null,
@@ -948,8 +976,8 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [SizedBox_width]: null
       });
     },
-    get C81() {
-      return C[81] = dart.const({
+    get C87() {
+      return C[87] = dart.const({
         __proto__: edge_insets.EdgeInsets.prototype,
         [EdgeInsets_bottom]: 4,
         [EdgeInsets_right]: 0,
@@ -957,8 +985,8 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [EdgeInsets_left]: 16
       });
     },
-    get C82() {
-      return C[82] = dart.const({
+    get C88() {
+      return C[88] = dart.const({
         __proto__: text_style.TextStyle.prototype,
         [TextStyle_overflow]: null,
         [TextStyle_fontVariations]: null,
@@ -984,12 +1012,12 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [TextStyle__fontFamilyFallback]: null,
         [TextStyle_fontFamily]: null,
         [TextStyle_backgroundColor]: null,
-        [TextStyle_color]: C[34] || CT.C34,
+        [TextStyle_color]: C[40] || CT.C40,
         [TextStyle_inherit]: true
       });
     },
-    get C83() {
-      return C[83] = dart.const({
+    get C89() {
+      return C[89] = dart.const({
         __proto__: text.Text.prototype,
         [Widget_key]: null,
         [Text_selectionColor]: null,
@@ -1004,13 +1032,13 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [Text_textDirection]: null,
         [Text_textAlign]: null,
         [Text_strutStyle]: null,
-        [Text_style]: C[37] || CT.C37,
+        [Text_style]: C[43] || CT.C43,
         [Text_textSpan]: null,
         [Text_data]: "Notícias"
       });
     },
-    get C84() {
-      return C[84] = dart.const({
+    get C90() {
+      return C[90] = dart.const({
         __proto__: edge_insets.EdgeInsets.prototype,
         [EdgeInsets_bottom]: 24,
         [EdgeInsets_right]: 24,
@@ -1018,15 +1046,15 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [EdgeInsets_left]: 24
       });
     },
-    get C85() {
-      return C[85] = dart.const({
+    get C91() {
+      return C[91] = dart.const({
         __proto__: noticias_page.SectionTitle.prototype,
         [Widget_key]: null,
         [SectionTitle_title$0]: "Últimas Notícias"
       });
     },
-    get C86() {
-      return C[86] = dart.const({
+    get C92() {
+      return C[92] = dart.const({
         __proto__: text_style.TextStyle.prototype,
         [TextStyle_overflow]: null,
         [TextStyle_fontVariations]: null,
@@ -1046,18 +1074,18 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [TextStyle_wordSpacing]: null,
         [TextStyle_letterSpacing]: null,
         [TextStyle_fontStyle]: null,
-        [TextStyle_fontWeight]: C[17] || CT.C17,
+        [TextStyle_fontWeight]: C[24] || CT.C24,
         [TextStyle_fontSize]: 28,
         [TextStyle__package]: null,
         [TextStyle__fontFamilyFallback]: null,
         [TextStyle_fontFamily]: null,
         [TextStyle_backgroundColor]: null,
-        [TextStyle_color]: C[54] || CT.C54,
+        [TextStyle_color]: C[60] || CT.C60,
         [TextStyle_inherit]: true
       });
     },
-    get C87() {
-      return C[87] = dart.const({
+    get C93() {
+      return C[93] = dart.const({
         __proto__: edge_insets.EdgeInsets.prototype,
         [EdgeInsets_bottom]: 16,
         [EdgeInsets_right]: 16,
@@ -1065,14 +1093,14 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [EdgeInsets_left]: 16
       });
     },
-    get C89() {
-      return C[89] = dart.const({
+    get C95() {
+      return C[95] = dart.const({
         __proto__: ui.Color.prototype,
         [Color_value]: 2332033023
       });
     },
-    get C88() {
-      return C[88] = dart.const({
+    get C94() {
+      return C[94] = dart.const({
         __proto__: text_style.TextStyle.prototype,
         [TextStyle_overflow]: null,
         [TextStyle_fontVariations]: null,
@@ -1098,12 +1126,12 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [TextStyle__fontFamilyFallback]: null,
         [TextStyle_fontFamily]: null,
         [TextStyle_backgroundColor]: null,
-        [TextStyle_color]: C[89] || CT.C89,
+        [TextStyle_color]: C[95] || CT.C95,
         [TextStyle_inherit]: true
       });
     },
-    get C90() {
-      return C[90] = dart.const({
+    get C96() {
+      return C[96] = dart.const({
         __proto__: basic.SizedBox.prototype,
         [Widget_key]: null,
         [SingleChildRenderObjectWidget_child]: null,
@@ -1111,14 +1139,14 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [SizedBox_width]: null
       });
     },
-    get C91() {
-      return C[91] = dart.const({
+    get C97() {
+      return C[97] = dart.const({
         __proto__: core.Duration.prototype,
         [Duration__duration]: 4000000
       });
     },
-    get C92() {
-      return C[92] = dart.const({
+    get C98() {
+      return C[98] = dart.const({
         __proto__: text.Text.prototype,
         [Widget_key]: null,
         [Text_selectionColor]: null,
@@ -1133,13 +1161,13 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [Text_textDirection]: null,
         [Text_textAlign]: null,
         [Text_strutStyle]: null,
-        [Text_style]: C[37] || CT.C37,
+        [Text_style]: C[43] || CT.C43,
         [Text_textSpan]: null,
         [Text_data]: "Contato"
       });
     },
-    get C93() {
-      return C[93] = dart.const({
+    get C99() {
+      return C[99] = dart.const({
         __proto__: text.Text.prototype,
         [Widget_key]: null,
         [Text_selectionColor]: null,
@@ -1154,13 +1182,13 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [Text_textDirection]: null,
         [Text_textAlign]: null,
         [Text_strutStyle]: null,
-        [Text_style]: C[86] || CT.C86,
+        [Text_style]: C[92] || CT.C92,
         [Text_textSpan]: null,
         [Text_data]: "Entre em Contato"
       });
     },
-    get C94() {
-      return C[94] = dart.const({
+    get C100() {
+      return C[100] = dart.const({
         __proto__: text.Text.prototype,
         [Widget_key]: null,
         [Text_selectionColor]: null,
@@ -1175,13 +1203,13 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [Text_textDirection]: null,
         [Text_textAlign]: null,
         [Text_strutStyle]: null,
-        [Text_style]: C[66] || CT.C66,
+        [Text_style]: C[72] || CT.C72,
         [Text_textSpan]: null,
         [Text_data]: "Preencha o formulário abaixo para entrar em contato conosco."
       });
     },
-    get C95() {
-      return C[95] = dart.const({
+    get C101() {
+      return C[101] = dart.const({
         __proto__: text_style.TextStyle.prototype,
         [TextStyle_overflow]: null,
         [TextStyle_fontVariations]: null,
@@ -1207,58 +1235,83 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [TextStyle__fontFamilyFallback]: null,
         [TextStyle_fontFamily]: null,
         [TextStyle_backgroundColor]: null,
-        [TextStyle_color]: C[18] || CT.C18,
+        [TextStyle_color]: C[25] || CT.C25,
         [TextStyle_inherit]: true
       });
     },
-    get C99() {
-      return C[99] = dart.const({
+    get C105() {
+      return C[105] = dart.const({
         __proto__: borders.BorderStyle.prototype,
         [_Enum__name]: "solid",
         [_Enum_index]: 1
       });
     },
-    get C98() {
-      return C[98] = dart.const({
+    get C104() {
+      return C[104] = dart.const({
         __proto__: borders.BorderSide.prototype,
         [BorderSide_strokeAlign]: -1,
-        [BorderSide_style]: C[99] || CT.C99,
+        [BorderSide_style]: C[105] || CT.C105,
         [BorderSide_width]: 1,
-        [BorderSide_color]: C[54] || CT.C54
+        [BorderSide_color]: C[60] || CT.C60
       });
     },
-    get C101() {
-      return C[101] = dart.const({
+    get C107() {
+      return C[107] = dart.const({
         __proto__: ui.Radius.prototype,
         [Radius_y]: 0,
         [Radius_x]: 0
       });
     },
-    get C102() {
-      return C[102] = dart.const({
+    get C108() {
+      return C[108] = dart.const({
         __proto__: ui.Radius.prototype,
         [Radius_y]: 4,
         [Radius_x]: 4
       });
     },
-    get C100() {
-      return C[100] = dart.const({
+    get C106() {
+      return C[106] = dart.const({
         __proto__: border_radius.BorderRadius.prototype,
-        [BorderRadius_bottomRight]: C[101] || CT.C101,
-        [BorderRadius_bottomLeft]: C[101] || CT.C101,
-        [BorderRadius_topRight]: C[102] || CT.C102,
-        [BorderRadius_topLeft]: C[102] || CT.C102
-      });
-    },
-    get C97() {
-      return C[97] = dart.const({
-        __proto__: input_border.UnderlineInputBorder.prototype,
-        [InputBorder_borderSide]: C[98] || CT.C98,
-        [UnderlineInputBorder_borderRadius]: C[100] || CT.C100
+        [BorderRadius_bottomRight]: C[107] || CT.C107,
+        [BorderRadius_bottomLeft]: C[107] || CT.C107,
+        [BorderRadius_topRight]: C[108] || CT.C108,
+        [BorderRadius_topLeft]: C[108] || CT.C108
       });
     },
     get C103() {
       return C[103] = dart.const({
+        __proto__: input_border.UnderlineInputBorder.prototype,
+        [InputBorder_borderSide]: C[104] || CT.C104,
+        [UnderlineInputBorder_borderRadius]: C[106] || CT.C106
+      });
+    },
+    get C110() {
+      return C[110] = dart.const({
+        __proto__: icon_data.IconData.prototype,
+        [IconData_matchTextDirection]: false,
+        [IconData_fontPackage]: null,
+        [IconData_fontFamily]: "MaterialIcons",
+        [IconData_codePoint]: 58513
+      });
+    },
+    get C109() {
+      return C[109] = dart.const({
+        __proto__: icon.Icon.prototype,
+        [Widget_key]: null,
+        [Icon_textDirection]: null,
+        [Icon_semanticLabel]: null,
+        [Icon_shadows]: null,
+        [Icon_color]: C[60] || CT.C60,
+        [Icon_opticalSize]: null,
+        [Icon_grade]: null,
+        [Icon_weight]: null,
+        [Icon_fill]: null,
+        [Icon_size]: null,
+        [Icon_icon]: C[110] || CT.C110
+      });
+    },
+    get C111() {
+      return C[111] = dart.const({
         __proto__: text_style.TextStyle.prototype,
         [TextStyle_overflow]: null,
         [TextStyle_fontVariations]: null,
@@ -1284,22 +1337,22 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [TextStyle__fontFamilyFallback]: null,
         [TextStyle_fontFamily]: null,
         [TextStyle_backgroundColor]: null,
-        [TextStyle_color]: C[34] || CT.C34,
+        [TextStyle_color]: C[40] || CT.C40,
         [TextStyle_inherit]: true
       });
     },
-    get C96() {
-      return C[96] = dart.const({
+    get C102() {
+      return C[102] = dart.const({
         __proto__: input_decorator.InputDecoration.prototype,
         [InputDecoration_constraints]: null,
         [InputDecoration_alignLabelWithHint]: null,
         [InputDecoration_semanticCounterText]: null,
         [InputDecoration_enabled]: true,
         [InputDecoration_border]: null,
-        [InputDecoration_enabledBorder]: C[97] || CT.C97,
+        [InputDecoration_enabledBorder]: C[103] || CT.C103,
         [InputDecoration_disabledBorder]: null,
         [InputDecoration_focusedErrorBorder]: null,
-        [InputDecoration_focusedBorder]: C[97] || CT.C97,
+        [InputDecoration_focusedBorder]: C[103] || CT.C103,
         [InputDecoration_errorBorder]: null,
         [InputDecoration_hoverColor]: null,
         [InputDecoration_focusColor]: null,
@@ -1319,7 +1372,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [InputDecoration_prefixText]: null,
         [InputDecoration_prefix]: null,
         [InputDecoration_prefixIconConstraints]: null,
-        [InputDecoration_prefixIcon]: null,
+        [InputDecoration_prefixIcon]: C[109] || CT.C109,
         [InputDecoration_isCollapsed]: false,
         [InputDecoration_contentPadding]: null,
         [InputDecoration_isDense]: null,
@@ -1336,25 +1389,50 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [InputDecoration_helperStyle]: null,
         [InputDecoration_helperText]: null,
         [InputDecoration_floatingLabelStyle]: null,
-        [InputDecoration_labelStyle]: C[103] || CT.C103,
+        [InputDecoration_labelStyle]: C[111] || CT.C111,
         [InputDecoration_labelText]: "Nome",
         [InputDecoration_label]: null,
         [InputDecoration_iconColor]: null,
         [InputDecoration_icon]: null
       });
     },
-    get C104() {
-      return C[104] = dart.const({
+    get C114() {
+      return C[114] = dart.const({
+        __proto__: icon_data.IconData.prototype,
+        [IconData_matchTextDirection]: false,
+        [IconData_fontPackage]: null,
+        [IconData_fontFamily]: "MaterialIcons",
+        [IconData_codePoint]: 57898
+      });
+    },
+    get C113() {
+      return C[113] = dart.const({
+        __proto__: icon.Icon.prototype,
+        [Widget_key]: null,
+        [Icon_textDirection]: null,
+        [Icon_semanticLabel]: null,
+        [Icon_shadows]: null,
+        [Icon_color]: C[60] || CT.C60,
+        [Icon_opticalSize]: null,
+        [Icon_grade]: null,
+        [Icon_weight]: null,
+        [Icon_fill]: null,
+        [Icon_size]: null,
+        [Icon_icon]: C[114] || CT.C114
+      });
+    },
+    get C112() {
+      return C[112] = dart.const({
         __proto__: input_decorator.InputDecoration.prototype,
         [InputDecoration_constraints]: null,
         [InputDecoration_alignLabelWithHint]: null,
         [InputDecoration_semanticCounterText]: null,
         [InputDecoration_enabled]: true,
         [InputDecoration_border]: null,
-        [InputDecoration_enabledBorder]: C[97] || CT.C97,
+        [InputDecoration_enabledBorder]: C[103] || CT.C103,
         [InputDecoration_disabledBorder]: null,
         [InputDecoration_focusedErrorBorder]: null,
-        [InputDecoration_focusedBorder]: C[97] || CT.C97,
+        [InputDecoration_focusedBorder]: C[103] || CT.C103,
         [InputDecoration_errorBorder]: null,
         [InputDecoration_hoverColor]: null,
         [InputDecoration_focusColor]: null,
@@ -1374,7 +1452,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [InputDecoration_prefixText]: null,
         [InputDecoration_prefix]: null,
         [InputDecoration_prefixIconConstraints]: null,
-        [InputDecoration_prefixIcon]: null,
+        [InputDecoration_prefixIcon]: C[113] || CT.C113,
         [InputDecoration_isCollapsed]: false,
         [InputDecoration_contentPadding]: null,
         [InputDecoration_isDense]: null,
@@ -1391,42 +1469,42 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [InputDecoration_helperStyle]: null,
         [InputDecoration_helperText]: null,
         [InputDecoration_floatingLabelStyle]: null,
-        [InputDecoration_labelStyle]: C[103] || CT.C103,
+        [InputDecoration_labelStyle]: C[111] || CT.C111,
         [InputDecoration_labelText]: "Email",
         [InputDecoration_label]: null,
         [InputDecoration_iconColor]: null,
         [InputDecoration_icon]: null
       });
     },
-    get C107() {
-      return C[107] = dart.const({
+    get C117() {
+      return C[117] = dart.const({
         __proto__: border_radius.BorderRadius.prototype,
-        [BorderRadius_bottomRight]: C[102] || CT.C102,
-        [BorderRadius_bottomLeft]: C[102] || CT.C102,
-        [BorderRadius_topRight]: C[102] || CT.C102,
-        [BorderRadius_topLeft]: C[102] || CT.C102
+        [BorderRadius_bottomRight]: C[108] || CT.C108,
+        [BorderRadius_bottomLeft]: C[108] || CT.C108,
+        [BorderRadius_topRight]: C[108] || CT.C108,
+        [BorderRadius_topLeft]: C[108] || CT.C108
       });
     },
-    get C106() {
-      return C[106] = dart.const({
+    get C116() {
+      return C[116] = dart.const({
         __proto__: input_border.OutlineInputBorder.prototype,
-        [InputBorder_borderSide]: C[98] || CT.C98,
-        [OutlineInputBorder_borderRadius]: C[107] || CT.C107,
+        [InputBorder_borderSide]: C[104] || CT.C104,
+        [OutlineInputBorder_borderRadius]: C[117] || CT.C117,
         [OutlineInputBorder_gapPadding]: 4
       });
     },
-    get C105() {
-      return C[105] = dart.const({
+    get C115() {
+      return C[115] = dart.const({
         __proto__: input_decorator.InputDecoration.prototype,
         [InputDecoration_constraints]: null,
         [InputDecoration_alignLabelWithHint]: null,
         [InputDecoration_semanticCounterText]: null,
         [InputDecoration_enabled]: true,
         [InputDecoration_border]: null,
-        [InputDecoration_enabledBorder]: C[106] || CT.C106,
+        [InputDecoration_enabledBorder]: C[116] || CT.C116,
         [InputDecoration_disabledBorder]: null,
         [InputDecoration_focusedErrorBorder]: null,
-        [InputDecoration_focusedBorder]: C[106] || CT.C106,
+        [InputDecoration_focusedBorder]: C[116] || CT.C116,
         [InputDecoration_errorBorder]: null,
         [InputDecoration_hoverColor]: null,
         [InputDecoration_focusColor]: null,
@@ -1463,15 +1541,15 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [InputDecoration_helperStyle]: null,
         [InputDecoration_helperText]: null,
         [InputDecoration_floatingLabelStyle]: null,
-        [InputDecoration_labelStyle]: C[103] || CT.C103,
+        [InputDecoration_labelStyle]: C[111] || CT.C111,
         [InputDecoration_labelText]: "Mensagem",
         [InputDecoration_label]: null,
         [InputDecoration_iconColor]: null,
         [InputDecoration_icon]: null
       });
     },
-    get C108() {
-      return C[108] = dart.const({
+    get C118() {
+      return C[118] = dart.const({
         __proto__: edge_insets.EdgeInsets.prototype,
         [EdgeInsets_bottom]: 16,
         [EdgeInsets_right]: 0,
@@ -1479,8 +1557,8 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [EdgeInsets_left]: 0
       });
     },
-    get C109() {
-      return C[109] = dart.const({
+    get C119() {
+      return C[119] = dart.const({
         __proto__: text.Text.prototype,
         [Widget_key]: null,
         [Text_selectionColor]: null,
@@ -1495,20 +1573,103 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
         [Text_textDirection]: null,
         [Text_textAlign]: null,
         [Text_strutStyle]: null,
-        [Text_style]: C[21] || CT.C21,
+        [Text_style]: C[27] || CT.C27,
         [Text_textSpan]: null,
         [Text_data]: "Enviar Mensagem"
       });
+    },
+    get C120() {
+      return C[120] = dart.const({
+        __proto__: text.Text.prototype,
+        [Widget_key]: null,
+        [Text_selectionColor]: null,
+        [Text_textHeightBehavior]: null,
+        [Text_textWidthBasis]: null,
+        [Text_semanticsLabel]: null,
+        [Text_maxLines]: null,
+        [Text_textScaleFactor]: null,
+        [Text_overflow]: null,
+        [Text_softWrap]: null,
+        [Text_locale]: null,
+        [Text_textDirection]: null,
+        [Text_textAlign]: null,
+        [Text_strutStyle]: null,
+        [Text_style]: null,
+        [Text_textSpan]: null,
+        [Text_data]: "Documentos"
+      });
+    },
+    get C121() {
+      return C[121] = dart.const({
+        __proto__: divider.Divider.prototype,
+        [Widget_key]: null,
+        [Divider_color]: C[60] || CT.C60,
+        [Divider_endIndent]: null,
+        [Divider_indent]: null,
+        [Divider_thickness]: null,
+        [Divider_height]: null
+      });
+    },
+    get C123() {
+      return C[123] = dart.const({
+        __proto__: icon_data.IconData.prototype,
+        [IconData_matchTextDirection]: false,
+        [IconData_fontPackage]: null,
+        [IconData_fontFamily]: "MaterialIcons",
+        [IconData_codePoint]: 57791
+      });
+    },
+    get C122() {
+      return C[122] = dart.const({
+        __proto__: icon.Icon.prototype,
+        [Widget_key]: null,
+        [Icon_textDirection]: null,
+        [Icon_semanticLabel]: null,
+        [Icon_shadows]: null,
+        [Icon_color]: C[60] || CT.C60,
+        [Icon_opticalSize]: null,
+        [Icon_grade]: null,
+        [Icon_weight]: null,
+        [Icon_fill]: null,
+        [Icon_size]: null,
+        [Icon_icon]: C[123] || CT.C123
+      });
+    },
+    get C125() {
+      return C[125] = dart.const({
+        __proto__: icon_data.IconData.prototype,
+        [IconData_matchTextDirection]: false,
+        [IconData_fontPackage]: null,
+        [IconData_fontFamily]: "MaterialIcons",
+        [IconData_codePoint]: 57857
+      });
+    },
+    get C124() {
+      return C[124] = dart.const({
+        __proto__: icon.Icon.prototype,
+        [Widget_key]: null,
+        [Icon_textDirection]: null,
+        [Icon_semanticLabel]: null,
+        [Icon_shadows]: null,
+        [Icon_color]: C[60] || CT.C60,
+        [Icon_opticalSize]: null,
+        [Icon_grade]: null,
+        [Icon_weight]: null,
+        [Icon_fill]: null,
+        [Icon_size]: null,
+        [Icon_icon]: C[125] || CT.C125
+      });
     }
   }, false);
-  var C = Array(110).fill(void 0);
+  var C = Array(126).fill(void 0);
   var I = [
     "file:///zapp/project/lib/main.dart",
     "file:///zapp/project/lib/homepage.dart",
     "file:///zapp/project/lib/sobrepage.dart",
     "file:///zapp/project/lib/grade_page.dart",
     "file:///zapp/project/lib/noticias_page.dart",
-    "file:///zapp/project/lib/contato_page.dart"
+    "file:///zapp/project/lib/contato_page.dart",
+    "file:///zapp/project/lib/documentos_page.dart"
   ];
   $46zapp_entry.runAppGuarded = function runAppGuarded() {
     async.runZonedGuarded(core.Null, dart.fn(() => {
@@ -1542,13 +1703,14 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
     });
   };
   var Widget_key = dart.privateName(framework, "Widget.key");
+  var DocumentosPage_documentos = dart.privateName(documentos_page, "DocumentosPage.documentos");
   main.MyApp = class MyApp extends framework.StatelessWidget {
     static ['_#new#tearOff'](opts) {
       let key = opts && 'key' in opts ? opts.key : null;
       return new main.MyApp.new({key: key});
     }
     build(context) {
-      return new app.MaterialApp.new({debugShowCheckedModeBanner: false, title: "IFRO TADS", theme: theme_data.ThemeData.new({primarySwatch: colors.Colors.green}), home: C[1] || CT.C1, routes: new (T.IdentityMapOfString$BuildContextToWidget()).from(["/sobre", dart.fn(context => C[2] || CT.C2, T.BuildContextToSobrePage()), "/grade", dart.fn(context => C[3] || CT.C3, T.BuildContextToGradePage()), "/noticias", dart.fn(context => C[4] || CT.C4, T.BuildContextToNoticiasPage()), "/contato", dart.fn(context => C[5] || CT.C5, T.BuildContextToContatoPage())])});
+      return new app.MaterialApp.new({debugShowCheckedModeBanner: false, title: "IFRO TADS", theme: theme_data.ThemeData.new({primarySwatch: colors.Colors.green}), home: C[1] || CT.C1, routes: new (T.IdentityMapOfString$BuildContextToWidget()).from(["/sobre", dart.fn(context => C[2] || CT.C2, T.BuildContextToSobrePage()), "/grade", dart.fn(context => C[3] || CT.C3, T.BuildContextToGradePage()), "/noticias", dart.fn(context => C[4] || CT.C4, T.BuildContextToNoticiasPage()), "/contato", dart.fn(context => C[5] || CT.C5, T.BuildContextToContatoPage()), "/documentos", dart.fn(context => C[6] || CT.C6, T.BuildContextToDocumentosPage())])});
     }
   };
   (main.MyApp.new = function(opts) {
@@ -1564,7 +1726,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
   }));
   dart.setLibraryUri(main.MyApp, I[0]);
   main.main = function main$0() {
-    binding.runApp(C[6] || CT.C6);
+    binding.runApp(C[13] || CT.C13);
   };
   web_plugin_registrant.registerPlugins = function registerPlugins() {
   };
@@ -1574,7 +1736,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
       return new homepage.HomePage.new({key: key});
     }
     build(context) {
-      return new scaffold.Scaffold.new({backgroundColor: colors.Colors.black, body: new single_child_scroll_view.SingleChildScrollView.new({child: new basic.Column.new({children: T.JSArrayOfWidget().of([new homepage.NavBar.new(), C[7] || CT.C7, C[8] || CT.C8, C[9] || CT.C9, C[10] || CT.C10, C[11] || CT.C11, C[12] || CT.C12, C[13] || CT.C13])})})});
+      return new scaffold.Scaffold.new({backgroundColor: colors.Colors.black, body: new single_child_scroll_view.SingleChildScrollView.new({child: new basic.Column.new({children: T.JSArrayOfWidget().of([new homepage.NavBar.new(), C[14] || CT.C14, C[15] || CT.C15, C[16] || CT.C16, C[17] || CT.C17, C[18] || CT.C18, C[19] || CT.C19, C[20] || CT.C20])})})});
     }
   };
   (homepage.HomePage.new = function(opts) {
@@ -1641,11 +1803,13 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
   var NavButton_text = dart.privateName(homepage, "NavButton.text");
   homepage.NavBar = class NavBar extends framework.StatelessWidget {
     build(context) {
-      return new container.Container.new({padding: C[14] || CT.C14, color: colors.Colors.black.withOpacity(0.9), child: new basic.Row.new({mainAxisAlignment: flex.MainAxisAlignment.spaceBetween, children: T.JSArrayOfWidget().of([C[15] || CT.C15, new basic.Row.new({children: T.JSArrayOfWidget().of([C[19] || CT.C19, new homepage.NavButton.new({text: "Sobre", onPressed: dart.fn(() => {
+      return new container.Container.new({padding: C[21] || CT.C21, color: colors.Colors.black.withOpacity(0.9), child: new basic.Row.new({mainAxisAlignment: flex.MainAxisAlignment.spaceBetween, children: T.JSArrayOfWidget().of([C[22] || CT.C22, new basic.Row.new({children: T.JSArrayOfWidget().of([C[26] || CT.C26, new homepage.NavButton.new({text: "Sobre", onPressed: dart.fn(() => {
                     navigator.Navigator.pushNamed(T.ObjectN(), context, "/sobre");
                   }, T.VoidTovoid())}), new homepage.NavButton.new({text: "Grade", onPressed: dart.fn(() => {
                     navigator.Navigator.pushNamed(T.ObjectN(), context, "/grade");
-                  }, T.VoidTovoid())}), C[20] || CT.C20, new homepage.NavButton.new({text: "Notícias", onPressed: dart.fn(() => {
+                  }, T.VoidTovoid())}), new homepage.NavButton.new({text: "Documentos", onPressed: dart.fn(() => {
+                    navigator.Navigator.pushNamed(T.ObjectN(), context, "/documentos");
+                  }, T.VoidTovoid())}), new homepage.NavButton.new({text: "Notícias", onPressed: dart.fn(() => {
                     navigator.Navigator.pushNamed(T.ObjectN(), context, "/noticias");
                   }, T.VoidTovoid())}), new homepage.NavButton.new({text: "Contato", onPressed: dart.fn(() => {
                     navigator.Navigator.pushNamed(T.ObjectN(), context, "/contato");
@@ -1690,7 +1854,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
     build(context) {
       let t0;
       return new text_button.TextButton.new({onPressed: (t0 = this.onPressed, t0 == null ? dart.fn(() => {
-        }, T.VoidTovoid()) : t0), child: new text.Text.new(this.text, {style: C[21] || CT.C21})});
+        }, T.VoidTovoid()) : t0), child: new text.Text.new(this.text, {style: C[27] || CT.C27})});
     }
   };
   (homepage.NavButton.new = function(opts) {
@@ -1725,8 +1889,8 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
       return new homepage.HeroSection.new({key: key});
     }
     build(context) {
-      return new container.Container.new({height: 500, width: 1 / 0, padding: C[22] || CT.C22, alignment: alignment.Alignment.center, child: new basic.Column.new({mainAxisAlignment: flex.MainAxisAlignment.center, children: T.JSArrayOfWidget().of([C[23] || CT.C23, C[26] || CT.C26, new elevated_button.ElevatedButton.new({style: elevated_button.ElevatedButton.styleFrom({backgroundColor: colors.Colors.green.shade600, foregroundColor: colors.Colors.white, padding: C[27] || CT.C27, shape: new rounded_rectangle_border.RoundedRectangleBorder.new({borderRadius: new border_radius.BorderRadius.circular(8)})}), onPressed: dart.fn(() => {
-              }, T.VoidTovoid()), child: C[28] || CT.C28})])})});
+      return new container.Container.new({height: 500, width: 1 / 0, padding: C[28] || CT.C28, alignment: alignment.Alignment.center, child: new basic.Column.new({mainAxisAlignment: flex.MainAxisAlignment.center, children: T.JSArrayOfWidget().of([C[29] || CT.C29, C[32] || CT.C32, new elevated_button.ElevatedButton.new({style: elevated_button.ElevatedButton.styleFrom({backgroundColor: colors.Colors.green.shade600, foregroundColor: colors.Colors.white, padding: C[33] || CT.C33, shape: new rounded_rectangle_border.RoundedRectangleBorder.new({borderRadius: new border_radius.BorderRadius.circular(8)})}), onPressed: dart.fn(() => {
+              }, T.VoidTovoid()), child: C[34] || CT.C34})])})});
     }
   };
   (homepage.HeroSection.new = function(opts) {
@@ -1747,7 +1911,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
       return new homepage.AboutSection.new({key: key});
     }
     build(context) {
-      return new container.Container.new({padding: C[30] || CT.C30, color: colors.Colors.black, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidget().of([new text.Text.new("Sobre o Curso", {style: new text_style.TextStyle.new({color: colors.Colors.white, fontSize: 28, fontWeight: ui.FontWeight.bold})}), new basic.SizedBox.new({height: 16}), new text.Text.new("O curso de Tecnologia em Análise e Desenvolvimento de Sistemas forma profissionais " + "capacitados para desenvolver, analisar, projetar, implementar e atualizar sistemas " + "de informação para diversos setores.", {style: new text_style.TextStyle.new({color: colors.Colors.white70, fontSize: 16})})])})});
+      return new container.Container.new({padding: C[36] || CT.C36, color: colors.Colors.black, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidget().of([new text.Text.new("Sobre o Curso", {style: new text_style.TextStyle.new({color: colors.Colors.white, fontSize: 28, fontWeight: ui.FontWeight.bold})}), new basic.SizedBox.new({height: 16}), new text.Text.new("O curso de Tecnologia em Análise e Desenvolvimento de Sistemas forma profissionais " + "capacitados para desenvolver, analisar, projetar, implementar e atualizar sistemas " + "de informação para diversos setores.", {style: new text_style.TextStyle.new({color: colors.Colors.white70, fontSize: 16})})])})});
     }
   };
   (homepage.AboutSection.new = function(opts) {
@@ -1768,7 +1932,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
       return new homepage.GradeSection.new({key: key});
     }
     build(context) {
-      return new container.Container.new({padding: C[30] || CT.C30, color: colors.Colors.black, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidget().of([new text.Text.new("Grade Curricular", {style: new text_style.TextStyle.new({color: colors.Colors.white, fontSize: 28, fontWeight: ui.FontWeight.bold})}), new basic.SizedBox.new({height: 16}), new text.Text.new("A grade é composta por disciplinas como Programação, Banco de Dados, Engenharia de Software, " + "Redes de Computadores, entre outras.", {style: new text_style.TextStyle.new({color: colors.Colors.white70, fontSize: 16})})])})});
+      return new container.Container.new({padding: C[36] || CT.C36, color: colors.Colors.black, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidget().of([new text.Text.new("Grade Curricular", {style: new text_style.TextStyle.new({color: colors.Colors.white, fontSize: 28, fontWeight: ui.FontWeight.bold})}), new basic.SizedBox.new({height: 16}), new text.Text.new("A grade é composta por disciplinas como Programação, Banco de Dados, Engenharia de Software, " + "Redes de Computadores, entre outras.", {style: new text_style.TextStyle.new({color: colors.Colors.white70, fontSize: 16})})])})});
     }
   };
   (homepage.GradeSection.new = function(opts) {
@@ -1789,7 +1953,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
       return new homepage.DocentesSection.new({key: key});
     }
     build(context) {
-      return new container.Container.new({padding: C[30] || CT.C30, color: colors.Colors.black, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidget().of([new text.Text.new("Corpo Docente", {style: new text_style.TextStyle.new({color: colors.Colors.white, fontSize: 28, fontWeight: ui.FontWeight.bold})}), new basic.SizedBox.new({height: 16}), new text.Text.new("O corpo docente é formado por professores mestres e doutores com experiência no mercado e na academia.", {style: new text_style.TextStyle.new({color: colors.Colors.white70, fontSize: 16})})])})});
+      return new container.Container.new({padding: C[36] || CT.C36, color: colors.Colors.black, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidget().of([new text.Text.new("Corpo Docente", {style: new text_style.TextStyle.new({color: colors.Colors.white, fontSize: 28, fontWeight: ui.FontWeight.bold})}), new basic.SizedBox.new({height: 16}), new text.Text.new("O corpo docente é formado por professores mestres e doutores com experiência no mercado e na academia.", {style: new text_style.TextStyle.new({color: colors.Colors.white70, fontSize: 16})})])})});
     }
   };
   (homepage.DocentesSection.new = function(opts) {
@@ -1810,7 +1974,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
       return new homepage.NoticiasSection.new({key: key});
     }
     build(context) {
-      return new container.Container.new({padding: C[30] || CT.C30, color: colors.Colors.black, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidget().of([new text.Text.new("Notícias", {style: new text_style.TextStyle.new({color: colors.Colors.white, fontSize: 28, fontWeight: ui.FontWeight.bold})}), new basic.SizedBox.new({height: 16}), new text.Text.new("Confira as últimas notícias e eventos do curso.", {style: new text_style.TextStyle.new({color: colors.Colors.white70, fontSize: 16})})])})});
+      return new container.Container.new({padding: C[36] || CT.C36, color: colors.Colors.black, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidget().of([new text.Text.new("Notícias", {style: new text_style.TextStyle.new({color: colors.Colors.white, fontSize: 28, fontWeight: ui.FontWeight.bold})}), new basic.SizedBox.new({height: 16}), new text.Text.new("Confira as últimas notícias e eventos do curso.", {style: new text_style.TextStyle.new({color: colors.Colors.white70, fontSize: 16})})])})});
     }
   };
   (homepage.NoticiasSection.new = function(opts) {
@@ -1831,7 +1995,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
       return new homepage.ContatoSection.new({key: key});
     }
     build(context) {
-      return new container.Container.new({padding: C[30] || CT.C30, color: colors.Colors.black, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidget().of([new text.Text.new("Contato", {style: new text_style.TextStyle.new({color: colors.Colors.white, fontSize: 28, fontWeight: ui.FontWeight.bold})}), new basic.SizedBox.new({height: 16}), new text.Text.new("Endereço, telefone e e-mail do campus.\nFormulário de contato será adicionado futuramente.", {style: new text_style.TextStyle.new({color: colors.Colors.white70, fontSize: 16})})])})});
+      return new container.Container.new({padding: C[36] || CT.C36, color: colors.Colors.black, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidget().of([new text.Text.new("Contato", {style: new text_style.TextStyle.new({color: colors.Colors.white, fontSize: 28, fontWeight: ui.FontWeight.bold})}), new basic.SizedBox.new({height: 16}), new text.Text.new("Endereço, telefone e e-mail do campus.\nFormulário de contato será adicionado futuramente.", {style: new text_style.TextStyle.new({color: colors.Colors.white70, fontSize: 16})})])})});
     }
   };
   (homepage.ContatoSection.new = function(opts) {
@@ -1852,7 +2016,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
       return new homepage.Footer.new({key: key});
     }
     build(context) {
-      return new container.Container.new({padding: C[31] || CT.C31, color: colors.Colors.black, alignment: alignment.Alignment.center, child: C[32] || CT.C32});
+      return new container.Container.new({padding: C[37] || CT.C37, color: colors.Colors.black, alignment: alignment.Alignment.center, child: C[38] || CT.C38});
     }
   };
   (homepage.Footer.new = function(opts) {
@@ -1888,7 +2052,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
       return new sobrepage.SobrePage.new({key: key});
     }
     build(context) {
-      return new scaffold.Scaffold.new({backgroundColor: colors.Colors.black, appBar: new app_bar.AppBar.new({backgroundColor: colors.Colors.black, iconTheme: C[35] || CT.C35, title: C[36] || CT.C36}), body: new single_child_scroll_view.SingleChildScrollView.new({padding: C[38] || CT.C38, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: C[39] || CT.C39})})});
+      return new scaffold.Scaffold.new({backgroundColor: colors.Colors.black, appBar: new app_bar.AppBar.new({backgroundColor: colors.Colors.black, iconTheme: C[41] || CT.C41, title: C[42] || CT.C42}), body: new single_child_scroll_view.SingleChildScrollView.new({padding: C[44] || CT.C44, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: C[45] || CT.C45})})});
     }
   };
   (sobrepage.SobrePage.new = function(opts) {
@@ -1917,7 +2081,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
       return new sobrepage.SectionTitle.new(title, {key: key});
     }
     build(context) {
-      return new text.Text.new(this.title, {style: C[53] || CT.C53});
+      return new text.Text.new(this.title, {style: C[59] || CT.C59});
     }
   };
   (sobrepage.SectionTitle.new = function(title, opts) {
@@ -1950,7 +2114,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
       return new sobrepage.SectionText.new(text, {key: key});
     }
     build(context) {
-      return new text.Text.new(this.text, {style: C[66] || CT.C66});
+      return new text.Text.new(this.text, {style: C[72] || CT.C72});
     }
   };
   (sobrepage.SectionText.new = function(text, opts) {
@@ -1978,7 +2142,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
       return new grade_page.GradePage.new({key: key});
     }
     build(context) {
-      return new scaffold.Scaffold.new({backgroundColor: colors.Colors.black, appBar: new app_bar.AppBar.new({backgroundColor: colors.Colors.black, iconTheme: C[35] || CT.C35, title: C[67] || CT.C67}), body: new single_child_scroll_view.SingleChildScrollView.new({padding: C[38] || CT.C38, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: C[68] || CT.C68})})});
+      return new scaffold.Scaffold.new({backgroundColor: colors.Colors.black, appBar: new app_bar.AppBar.new({backgroundColor: colors.Colors.black, iconTheme: C[41] || CT.C41, title: C[73] || CT.C73}), body: new single_child_scroll_view.SingleChildScrollView.new({padding: C[44] || CT.C44, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: C[74] || CT.C74})})});
     }
   };
   (grade_page.GradePage.new = function(opts) {
@@ -2003,9 +2167,9 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
       return new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: semesters[$map](basic.Padding, dart.fn(semester => {
           let title = semester[$keys][$first];
           let subjects = dart.nullCheck(semester[$_get](title));
-          return new basic.Padding.new({padding: C[78] || CT.C78, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: (() => {
-                let t0 = T.JSArrayOfWidget().of([new text.Text.new(title, {style: C[79] || CT.C79}), C[80] || CT.C80]);
-                t0[$addAll](subjects[$map](framework.Widget, dart.fn(subject => new basic.Padding.new({padding: C[81] || CT.C81, child: new text.Text.new("• " + subject, {style: C[82] || CT.C82})}), T.StringToPadding())));
+          return new basic.Padding.new({padding: C[84] || CT.C84, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: (() => {
+                let t0 = T.JSArrayOfWidget().of([new text.Text.new(title, {style: C[85] || CT.C85}), C[86] || CT.C86]);
+                t0[$addAll](subjects[$map](framework.Widget, dart.fn(subject => new basic.Padding.new({padding: C[87] || CT.C87, child: new text.Text.new("• " + subject, {style: C[88] || CT.C88})}), T.StringToPadding())));
                 return t0;
               })()})});
         }, T.MapOfString$ListOfStringToPadding()))[$toList]()});
@@ -2036,7 +2200,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
       return new grade_page.SectionTitle.new(title, {key: key});
     }
     build(context) {
-      return new text.Text.new(this.title, {style: C[53] || CT.C53});
+      return new text.Text.new(this.title, {style: C[59] || CT.C59});
     }
   };
   (grade_page.SectionTitle.new = function(title, opts) {
@@ -2069,7 +2233,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
       return new grade_page.SectionText.new(text, {key: key});
     }
     build(context) {
-      return new text.Text.new(this.text, {style: C[66] || CT.C66});
+      return new text.Text.new(this.text, {style: C[72] || CT.C72});
     }
   };
   (grade_page.SectionText.new = function(text, opts) {
@@ -2096,7 +2260,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
       return new noticias_page.NoticiasPage.new({key: key});
     }
     build(context) {
-      return new scaffold.Scaffold.new({backgroundColor: colors.Colors.black, appBar: new app_bar.AppBar.new({backgroundColor: colors.Colors.black, iconTheme: C[35] || CT.C35, title: C[83] || CT.C83}), body: new single_child_scroll_view.SingleChildScrollView.new({padding: C[84] || CT.C84, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidget().of([C[85] || CT.C85, C[72] || CT.C72, new noticias_page.NewsCard.new({title: "Semana Acadêmica de Tecnologia", date: "01/09/2025", content: "A Semana Acadêmica do curso de TADS trouxe palestras sobre inteligência artificial, " + "workshops de Flutter e maratonas de programação para os estudantes, incentivando a prática e a inovação."}), C[72] || CT.C72, new noticias_page.NewsCard.new({title: "Novo Laboratório de Informática Inaugurado", date: "15/08/2025", content: "O IFRO Campus Ariquemes inaugurou um novo laboratório de informática com equipamentos modernos " + "para atender às necessidades dos alunos do curso de TADS."}), C[72] || CT.C72, new noticias_page.NewsCard.new({title: "Alunos de TADS vencem Hackathon Estadual", date: "05/08/2025", content: "Estudantes do curso de TADS participaram do Hackathon Estadual de Rondônia e conquistaram o primeiro lugar " + "com um projeto inovador de aplicativo para gestão de saúde pública."}), C[72] || CT.C72, new noticias_page.NewsCard.new({title: "Inscrições abertas para o Processo Seletivo", date: "20/07/2025", content: "O curso de Tecnologia em Análise e Desenvolvimento de Sistemas do IFRO está com inscrições abertas para o processo seletivo 2026. " + "Garanta sua vaga e faça parte do futuro da tecnologia!"}), C[42] || CT.C42, new basic.Center.new({child: new text.Text.new("© 2025 IFRO - Tecnologia em Análise e Desenvolvimento de Sistemas", {style: new text_style.TextStyle.new({color: colors.Colors.white70, fontSize: 14}), textAlign: ui.TextAlign.center})})])})})});
+      return new scaffold.Scaffold.new({backgroundColor: colors.Colors.black, appBar: new app_bar.AppBar.new({backgroundColor: colors.Colors.black, iconTheme: C[41] || CT.C41, title: C[89] || CT.C89}), body: new single_child_scroll_view.SingleChildScrollView.new({padding: C[90] || CT.C90, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidget().of([C[91] || CT.C91, C[78] || CT.C78, new noticias_page.NewsCard.new({title: "Semana Acadêmica de Tecnologia", date: "01/09/2025", content: "A Semana Acadêmica do curso de TADS trouxe palestras sobre inteligência artificial, " + "workshops de Flutter e maratonas de programação para os estudantes, incentivando a prática e a inovação."}), C[78] || CT.C78, new noticias_page.NewsCard.new({title: "Novo Laboratório de Informática Inaugurado", date: "15/08/2025", content: "O IFRO Campus Ariquemes inaugurou um novo laboratório de informática com equipamentos modernos " + "para atender às necessidades dos alunos do curso de TADS."}), C[78] || CT.C78, new noticias_page.NewsCard.new({title: "Alunos de TADS vencem Hackathon Estadual", date: "05/08/2025", content: "Estudantes do curso de TADS participaram do Hackathon Estadual de Rondônia e conquistaram o primeiro lugar " + "com um projeto inovador de aplicativo para gestão de saúde pública."}), C[78] || CT.C78, new noticias_page.NewsCard.new({title: "Inscrições abertas para o Processo Seletivo", date: "20/07/2025", content: "O curso de Tecnologia em Análise e Desenvolvimento de Sistemas do IFRO está com inscrições abertas para o processo seletivo 2026. " + "Garanta sua vaga e faça parte do futuro da tecnologia!"}), C[48] || CT.C48, new basic.Center.new({child: new text.Text.new("© 2025 IFRO - Tecnologia em Análise e Desenvolvimento de Sistemas", {style: new text_style.TextStyle.new({color: colors.Colors.white70, fontSize: 14}), textAlign: ui.TextAlign.center})})])})})});
     }
   };
   (noticias_page.NoticiasPage.new = function(opts) {
@@ -2124,7 +2288,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
       return new noticias_page.SectionTitle.new(title, {key: key});
     }
     build(context) {
-      return new text.Text.new(this.title, {style: C[86] || CT.C86});
+      return new text.Text.new(this.title, {style: C[92] || CT.C92});
     }
   };
   (noticias_page.SectionTitle.new = function(title, opts) {
@@ -2174,7 +2338,7 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
       return new noticias_page.NewsCard.new({key: key, title: title, date: date, content: content});
     }
     build(context) {
-      return new card.Card.new({color: colors.Colors.grey._get(900), shape: new rounded_rectangle_border.RoundedRectangleBorder.new({borderRadius: new border_radius.BorderRadius.circular(8)}), elevation: 4, child: new basic.Padding.new({padding: C[87] || CT.C87, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidget().of([new text.Text.new(this.title, {style: C[79] || CT.C79}), C[80] || CT.C80, new text.Text.new(this.date, {style: C[88] || CT.C88}), C[90] || CT.C90, new text.Text.new(this.content, {style: C[66] || CT.C66})])})})});
+      return new card.Card.new({color: colors.Colors.grey._get(900), shape: new rounded_rectangle_border.RoundedRectangleBorder.new({borderRadius: new border_radius.BorderRadius.circular(8)}), elevation: 4, child: new basic.Padding.new({padding: C[93] || CT.C93, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidget().of([new text.Text.new(this.title, {style: C[85] || CT.C85}), C[86] || CT.C86, new text.Text.new(this.date, {style: C[94] || CT.C94}), C[96] || CT.C96, new text.Text.new(this.content, {style: C[72] || CT.C72})])})})});
     }
   };
   (noticias_page.NewsCard.new = function(opts) {
@@ -2268,6 +2432,20 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
   var InputDecoration_prefixText = dart.privateName(input_decorator, "InputDecoration.prefixText");
   var InputDecoration_prefix = dart.privateName(input_decorator, "InputDecoration.prefix");
   var InputDecoration_prefixIconConstraints = dart.privateName(input_decorator, "InputDecoration.prefixIconConstraints");
+  var Icon_textDirection = dart.privateName(icon, "Icon.textDirection");
+  var Icon_semanticLabel = dart.privateName(icon, "Icon.semanticLabel");
+  var Icon_shadows = dart.privateName(icon, "Icon.shadows");
+  var Icon_color = dart.privateName(icon, "Icon.color");
+  var Icon_opticalSize = dart.privateName(icon, "Icon.opticalSize");
+  var Icon_grade = dart.privateName(icon, "Icon.grade");
+  var Icon_weight = dart.privateName(icon, "Icon.weight");
+  var Icon_fill = dart.privateName(icon, "Icon.fill");
+  var Icon_size = dart.privateName(icon, "Icon.size");
+  var IconData_matchTextDirection = dart.privateName(icon_data, "IconData.matchTextDirection");
+  var IconData_fontPackage = dart.privateName(icon_data, "IconData.fontPackage");
+  var IconData_fontFamily = dart.privateName(icon_data, "IconData.fontFamily");
+  var IconData_codePoint = dart.privateName(icon_data, "IconData.codePoint");
+  var Icon_icon = dart.privateName(icon, "Icon.icon");
   var InputDecoration_prefixIcon = dart.privateName(input_decorator, "InputDecoration.prefixIcon");
   var InputDecoration_isCollapsed = dart.privateName(input_decorator, "InputDecoration.isCollapsed");
   var InputDecoration_contentPadding = dart.privateName(input_decorator, "InputDecoration.contentPadding");
@@ -2293,24 +2471,30 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
   var OutlineInputBorder_borderRadius = dart.privateName(input_border, "OutlineInputBorder.borderRadius");
   var OutlineInputBorder_gapPadding = dart.privateName(input_border, "OutlineInputBorder.gapPadding");
   contato_page._ContatoPageState = class _ContatoPageState extends framework.State$(contato_page.ContatoPage) {
+    dispose() {
+      this[_nomeController].dispose();
+      this[_emailController].dispose();
+      this[_mensagemController].dispose();
+      super.dispose();
+    }
     [_enviarFormulario]() {
       if (dart.nullCheck(this[_formKey].currentState).validate()) {
         let nome = this[_nomeController].text;
         let email = this[_emailController].text;
         let mensagem = this[_mensagemController].text;
-        scaffold.ScaffoldMessenger.of(this.context).showSnackBar(new snack_bar.SnackBar.new({content: new text.Text.new("Mensagem enviada com sucesso!\n" + "Nome: " + nome + "\nEmail: " + email + "\nMensagem: " + mensagem), backgroundColor: colors.Colors.green, duration: C[91] || CT.C91}));
+        scaffold.ScaffoldMessenger.of(this.context).showSnackBar(new snack_bar.SnackBar.new({content: new text.Text.new("Mensagem enviada com sucesso!\n" + "Nome: " + nome + "\nEmail: " + email + "\nMensagem: " + mensagem), backgroundColor: colors.Colors.green, duration: C[97] || CT.C97}));
         this[_nomeController].clear();
         this[_emailController].clear();
         this[_mensagemController].clear();
       }
     }
     build(context) {
-      return new scaffold.Scaffold.new({backgroundColor: colors.Colors.black, appBar: new app_bar.AppBar.new({backgroundColor: colors.Colors.black, iconTheme: C[35] || CT.C35, title: C[92] || CT.C92}), body: new single_child_scroll_view.SingleChildScrollView.new({padding: C[84] || CT.C84, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidget().of([C[93] || CT.C93, C[72] || CT.C72, C[94] || CT.C94, C[42] || CT.C42, new form.Form.new({key: this[_formKey], child: new basic.Column.new({children: T.JSArrayOfWidget().of([new text_form_field.TextFormField.new({controller: this[_nomeController], style: C[95] || CT.C95, decoration: C[96] || CT.C96, validator: dart.fn(value => {
+      return new scaffold.Scaffold.new({backgroundColor: colors.Colors.black, appBar: new app_bar.AppBar.new({backgroundColor: colors.Colors.black, iconTheme: C[41] || CT.C41, title: C[98] || CT.C98}), body: new single_child_scroll_view.SingleChildScrollView.new({padding: C[90] || CT.C90, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidget().of([C[99] || CT.C99, C[78] || CT.C78, C[100] || CT.C100, C[48] || CT.C48, new form.Form.new({key: this[_formKey], child: new basic.Column.new({children: T.JSArrayOfWidget().of([new text_form_field.TextFormField.new({controller: this[_nomeController], autofocus: true, style: C[101] || CT.C101, decoration: C[102] || CT.C102, validator: dart.fn(value => {
                         if (value == null || value[$isEmpty]) {
                           return "Por favor, insira seu nome";
                         }
                         return null;
-                      }, T.StringNToStringN())}), C[72] || CT.C72, new text_form_field.TextFormField.new({controller: this[_emailController], style: C[95] || CT.C95, decoration: C[104] || CT.C104, validator: dart.fn(value => {
+                      }, T.StringNToStringN())}), C[78] || CT.C78, new text_form_field.TextFormField.new({controller: this[_emailController], style: C[101] || CT.C101, decoration: C[112] || CT.C112, validator: dart.fn(value => {
                         if (value == null || value[$isEmpty]) {
                           return "Por favor, insira seu email";
                         }
@@ -2318,12 +2502,12 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
                           return "Por favor, insira um email válido";
                         }
                         return null;
-                      }, T.StringNToStringN())}), C[72] || CT.C72, new text_form_field.TextFormField.new({controller: this[_mensagemController], style: C[95] || CT.C95, maxLines: 5, decoration: C[105] || CT.C105, validator: dart.fn(value => {
+                      }, T.StringNToStringN())}), C[78] || CT.C78, new text_form_field.TextFormField.new({controller: this[_mensagemController], style: C[101] || CT.C101, maxLines: 5, decoration: C[115] || CT.C115, validator: dart.fn(value => {
                         if (value == null || value[$isEmpty]) {
                           return "Por favor, insira sua mensagem";
                         }
                         return null;
-                      }, T.StringNToStringN())}), C[26] || CT.C26, new basic.SizedBox.new({width: 1 / 0, child: new elevated_button.ElevatedButton.new({style: elevated_button.ElevatedButton.styleFrom({backgroundColor: colors.Colors.green, padding: C[108] || CT.C108}), onPressed: dart.bind(this, _enviarFormulario), child: C[109] || CT.C109})})])})}), C[42] || CT.C42, new basic.Center.new({child: new text.Text.new("© 2025 IFRO - Tecnologia em Análise e Desenvolvimento de Sistemas", {style: new text_style.TextStyle.new({color: colors.Colors.white70, fontSize: 14}), textAlign: ui.TextAlign.center})})])})})});
+                      }, T.StringNToStringN())}), C[32] || CT.C32, new basic.SizedBox.new({width: 1 / 0, child: new elevated_button.ElevatedButton.new({style: elevated_button.ElevatedButton.styleFrom({backgroundColor: colors.Colors.green, padding: C[118] || CT.C118}), onPressed: dart.bind(this, _enviarFormulario), child: C[119] || CT.C119})})])})}), C[48] || CT.C48, new basic.Center.new({child: new text.Text.new("© 2025 IFRO - Tecnologia em Análise e Desenvolvimento de Sistemas", {style: new text_style.TextStyle.new({color: colors.Colors.white70, fontSize: 14}), textAlign: ui.TextAlign.center})})])})})});
     }
     static ['_#new#tearOff']() {
       return new contato_page._ContatoPageState.new();
@@ -2352,6 +2536,49 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
     [_emailController]: dart.finalFieldType(editable_text.TextEditingController),
     [_mensagemController]: dart.finalFieldType(editable_text.TextEditingController)
   }));
+  var Divider_color = dart.privateName(divider, "Divider.color");
+  var Divider_endIndent = dart.privateName(divider, "Divider.endIndent");
+  var Divider_indent = dart.privateName(divider, "Divider.indent");
+  var Divider_thickness = dart.privateName(divider, "Divider.thickness");
+  var Divider_height = dart.privateName(divider, "Divider.height");
+  const documentos = DocumentosPage_documentos;
+  documentos_page.DocumentosPage = class DocumentosPage extends framework.StatelessWidget {
+    get documentos() {
+      return this[documentos];
+    }
+    set documentos(value) {
+      super.documentos = value;
+    }
+    static ['_#new#tearOff'](opts) {
+      let key = opts && 'key' in opts ? opts.key : null;
+      return new documentos_page.DocumentosPage.new({key: key});
+    }
+    build(context) {
+      return new scaffold.Scaffold.new({backgroundColor: colors.Colors.black, appBar: new app_bar.AppBar.new({title: C[120] || CT.C120, backgroundColor: colors.Colors.black, iconTheme: C[41] || CT.C41}), body: new scroll_view.ListView.separated({padding: C[90] || CT.C90, itemCount: this.documentos[$length], separatorBuilder: dart.fn((_, __) => C[121] || CT.C121, T.BuildContextAndintToDivider()), itemBuilder: dart.fn((context, index) => {
+            let doc = this.documentos[$_get](index);
+            return new list_tile.ListTile.new({leading: C[122] || CT.C122, title: new text.Text.new(dart.nullCheck(doc[$_get]("titulo")), {style: C[43] || CT.C43}), subtitle: new text.Text.new(dart.nullCheck(doc[$_get]("descricao")), {style: C[111] || CT.C111}), trailing: C[124] || CT.C124, onTap: dart.fn(() => {
+                scaffold.ScaffoldMessenger.of(context).showSnackBar(new snack_bar.SnackBar.new({content: new text.Text.new("Clique em \"" + dart.str(doc[$_get]("titulo")) + "\" - documento fictício."), backgroundColor: colors.Colors.green}));
+              }, T.VoidTovoid())});
+          }, T.BuildContextAndintToListTile())})});
+    }
+  };
+  (documentos_page.DocumentosPage.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    this[documentos] = C[7] || CT.C7;
+    documentos_page.DocumentosPage.__proto__.new.call(this, {key: key});
+    ;
+  }).prototype = documentos_page.DocumentosPage.prototype;
+  dart.addTypeTests(documentos_page.DocumentosPage);
+  dart.addTypeCaches(documentos_page.DocumentosPage);
+  dart.setMethodSignature(documentos_page.DocumentosPage, () => ({
+    __proto__: dart.getMethods(documentos_page.DocumentosPage.__proto__),
+    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }));
+  dart.setLibraryUri(documentos_page.DocumentosPage, I[6]);
+  dart.setFieldSignature(documentos_page.DocumentosPage, () => ({
+    __proto__: dart.getFields(documentos_page.DocumentosPage.__proto__),
+    documentos: dart.finalFieldType(core.List$(core.Map$(core.String, core.String)))
+  }));
   dart.trackLibraries("zapp_user_main", {
     "file:///zapp/project/.zapp_entry.dart": $46zapp_entry,
     "file:///zapp/project/lib/main.dart": main,
@@ -2360,9 +2587,10 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
     "file:///zapp/project/lib/sobrepage.dart": sobrepage,
     "file:///zapp/project/lib/grade_page.dart": grade_page,
     "file:///zapp/project/lib/noticias_page.dart": noticias_page,
-    "file:///zapp/project/lib/contato_page.dart": contato_page
+    "file:///zapp/project/lib/contato_page.dart": contato_page,
+    "file:///zapp/project/lib/documentos_page.dart": documentos_page
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["/zapp/project/.zapp_entry.dart","/zapp/project/lib/main.dart","/zapp/project/.dart_tool/dartpad/web_plugin_registrant.dart","/zapp/project/lib/homepage.dart","/zapp/project/lib/sobrepage.dart","/zapp/project/lib/grade_page.dart","/zapp/project/lib/noticias_page.dart","/zapp/project/lib/contato_page.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;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","file":"main.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["/zapp/project/.zapp_entry.dart","/zapp/project/lib/main.dart","/zapp/project/.dart_tool/dartpad/web_plugin_registrant.dart","/zapp/project/lib/homepage.dart","/zapp/project/lib/sobrepage.dart","/zapp/project/lib/grade_page.dart","/zapp/project/lib/noticias_page.dart","/zapp/project/lib/contato_page.dart","/zapp/project/lib/documentos_page.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;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","file":"main.js"}');
   // Exports:
   return {
     zapp__project__$46zapp_entry: $46zapp_entry,
@@ -2372,7 +2600,8 @@ define('zapp_user_main', ['dart_sdk', 'flutter_sdk'], (function load__zapp_user_
     zapp__project__lib__sobrepage: sobrepage,
     zapp__project__lib__grade_page: grade_page,
     zapp__project__lib__noticias_page: noticias_page,
-    zapp__project__lib__contato_page: contato_page
+    zapp__project__lib__contato_page: contato_page,
+    zapp__project__lib__documentos_page: documentos_page
   };
 }));
 

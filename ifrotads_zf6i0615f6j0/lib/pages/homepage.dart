@@ -58,7 +58,12 @@ class NavBar extends StatelessWidget {
                   Navigator.pushNamed(context, '/grade');
                 },
               ),
-              const NavButton(text: 'Docentes'),
+              NavButton(
+                text: 'Documentos',
+                onPressed: () {
+                  Navigator.pushNamed(context, '/documentos');
+                }
+                ),
                NavButton(
                 text: 'Notícias',
                 onPressed: () {

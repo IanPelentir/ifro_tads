@@ -4,6 +4,7 @@ import 'sobrepage.dart';
 import 'grade_page.dart';
 import 'noticias_page.dart';
 import 'contato_page.dart';
+import 'documentos_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         '/grade': (context) => const GradePage(),
         '/noticias': (context) => const NoticiasPage(),
         '/contato': (context) => const ContatoPage(),
+        '/documentos': (context) => const DocumentosPage(),
       },
     );
   }
